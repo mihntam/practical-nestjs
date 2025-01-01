@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { LoggerModule } from '@/common/logger';
 import { UserModule } from '@/features/user/user.module';
+import { LoggerModule } from '@/building-blocks/infrastructure';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -20,4 +20,4 @@ import { AppService } from './app.service';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
