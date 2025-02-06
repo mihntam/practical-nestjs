@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common';
+import { ConsoleLogger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
@@ -9,7 +9,12 @@ import { AppModule } from './app.module';
 import { setupSwagger } from './setup-swagger';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    logger: new ConsoleLogger({
+      json: true,
+      colors: true,
+    }),
+  });
   const port = process.env.PORT || 3000;
 
   app.useLogger(app.get(LoggerService));
