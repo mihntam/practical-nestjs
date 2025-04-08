@@ -6,6 +6,7 @@ import { UserModule } from "@/features/user/user.module";
 
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import { AppService } from "./app.service";
             cache: true,
             expandVariables: true,
         }),
+        CqrsModule.forRoot(),
         UserModule,
         LoggerModule,
     ],
