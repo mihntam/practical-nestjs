@@ -2,7 +2,7 @@ import { ConsoleLogger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 
-import { HttpExceptionFilter } from "@/building-blocks/common/filters";
+import { AllExceptionFilter } from "@/building-blocks/common/filters";
 import { LoggerService } from "@/building-blocks/infrastructure";
 
 import { AppModule } from "./app.module";
@@ -18,7 +18,7 @@ async function bootstrap(): Promise<void> {
     const port = process.env.PORT || 3000;
 
     app.useLogger(app.get(LoggerService));
-    app.useGlobalFilters(new HttpExceptionFilter());
+    app.useGlobalFilters(new AllExceptionFilter());
     app.useGlobalPipes(
         new ValidationPipe({
             whitelist: true,
